@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mārcis Naktiņš - Resume</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: white;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .resume-container {
+            width: 100%;
+            margin: 0;
+            background: white;
+            border-radius: 0;
+            box-shadow: none;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            min-height: 100vh;
+        }
+        
+        .sidebar {
+            background: linear-gradient(180deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 40px 30px;
+            position: relative;
+        }
+        
+        .sidebar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1" fill="rgba(255,255,255,0.1)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .profile-section {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .name {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+        }
+        
+        .contact-info {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        
+        .contact-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 12px;
+            opacity: 0.8;
+        }
+        
+        .skills-section {
+            position: relative;
+            z-index: 2;
+            margin-top: 40px;
+        }
+        
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .skill-item {
+            margin-bottom: 12px;
+            font-size: 14px;
+            padding-left: 15px;
+            position: relative;
+        }
+        
+        .skill-item::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: #3498db;
+        }
+        
+        .main-content {
+            padding: 40px;
+        }
+        
+        .summary {
+            margin-bottom: 40px;
+        }
+        
+        .summary-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            position: relative;
+        }
+        
+        .summary-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+        
+        .summary-text {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #666;
+        }
+        
+        .experience-section, .education-section {
+            margin-bottom: 40px;
+        }
+        
+        .section-header {
+            font-size: 24px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        .section-header::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+        
+        .experience-item {
+            margin-bottom: 30px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+            transition: all 0.3s ease;
+        }
+        
+        .experience-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+        
+        .job-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .company {
+            font-size: 16px;
+            color: #667eea;
+            font-weight: 500;
+        }
+        
+        .duration {
+            font-size: 14px;
+            color: #7f8c8d;
+            background: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+        
+        .location {
+            font-size: 14px;
+            color: #95a5a6;
+            font-style: italic;
+        }
+        
+        .job-description {
+            color: #555;
+            line-height: 1.6;
+            margin-top: 12px;
+        }
+        
+        .education-item {
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border-left: 4px solid #764ba2;
+        }
+        
+        .degree {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .institution {
+            font-size: 16px;
+            color: #764ba2;
+            font-weight: 500;
+        }
+        
+        .graduation {
+            font-size: 14px;
+            color: #7f8c8d;
+            margin-top: 5px;
+        }
+        
+        @media (max-width: 768px) {
+            .resume-container {
+                grid-template-columns: 1fr;
+                margin: 20px;
+            }
+            
+            .sidebar {
+                padding: 30px 20px;
+            }
+            
+            .main-content {
+                padding: 30px 20px;
+            }
+            
+            .job-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .duration {
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="resume-container">
+        <div class="sidebar">
+            <div class="profile-section">
+                <h1 class="name">Mārcis Naktiņš</h1>
+            </div>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <svg class="contact-icon" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+                    </svg>
+                    Riga
+                </div>
+                <div class="contact-item">
+                    <svg class="contact-icon" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+                    </svg>
+                    26410285
+                </div>
+                <div class="contact-item">
+                    <svg class="contact-icon" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+                    </svg>
+                    marcis.naktins@gmail.com
+                </div>
+            </div>
+            
+            <div class="skills-section">
+                <h3 class="section-title">Skills</h3>
+                <div class="skill-item">Computer, server, network device hardware maintenance</div>
+                <div class="skill-item">Programming skills - Python, Bash, begginer-level Go-lang</div>
+                <div class="skill-item">Knowledge of network protocols and remote desktop management</div>
+                <div class="skill-item">Windows and Linux environment tools and management</div>
+                <div class="skill-item">Software maintenance</div>
+                <div class="skill-item">Familliar with Mikrotik and HP architectures</div>
+            </div>
+        </div>
+        
+        <div class="main-content">
+            <div class="summary">
+                <h2 class="summary-title">Summary</h2>
+                <p class="summary-text">Tech-savvy IT person with hands-on experience in emerging technologies and passion for continuous improvement. Skilled in identifying opportunities for technological enhancements and implementing effective solutions. Adept at leveraging new tools and methods to solve problems and enhance productivity. Excels in adapting to fast-paced environments and driving technological advancements.</p>
+            </div>
+            
+            <div class="experience-section">
+                <h2 class="section-header">Experience</h2>
+                
+                <div class="experience-item">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Programming and Monitoring</div>
+                            <div class="company">Santa Monica Networks</div>
+                            <div class="location">Riga</div>
+                        </div>
+                        <div class="duration">11/2024 - 07/2025</div>
+                    </div>
+                    <div class="job-description">
+                        Identified issues, analyzed information and provided solutions to problems.
+                        Created multiple python script solutions
+                        Maintained Zabbix monitoring - Zabbix host and map control, adding new hosts/devices, improving overall performance and look
+                    </div>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">System and Network Administrator</div>
+                            <div class="company">Ventspils Digitālais Centrs</div>
+                            <div class="location">Ventspils</div>
+                        </div>
+                        <div class="duration">01/2022 - 08/2024</div>
+                    </div>
+                    <div class="job-description">
+                        Installed important security and functionality patches to maintain optimal protections against intrusion and system reliability.
+                        Oversaw file system and storage upgrades while safeguarding data integrity and redundancy.
+                        Provisioned new software and hardware for use, following established security policies.
+                    </div>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Lecturer/Guest lecturer</div>
+                            <div class="company">Ventspils Augstskola</div>
+                            <div class="location">Ventspils</div>
+                        </div>
+                        <div class="duration">09/2020 - 08/2024</div>
+                    </div>
+                    <div class="job-description">
+                        Over several semesters, I taught four study courses — LAN Design and Administration, Operating Systems, Computer System Architecture and Structure, and Network Operating Systems. The main tasks carried out were preparing materials for the courses and delivering them to students, as well as creating exams and assessment assignments. The courses were conducted in both English and Latvian.
+                    </div>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">System and Network Administrator</div>
+                            <div class="company">Ventspils Augstskola</div>
+                            <div class="location">Ventspils</div>
+                        </div>
+                        <div class="duration">09/2021 - 01/2022</div>
+                    </div>
+                    <div class="job-description">
+                        Maintained IT infrastructure at Ventspils University of Applied Sciences
+                        Managed virtual machines and containers using Proxmox, including backup solutions with rsnapshot and Proxmox native tools
+                        Configured, monitored, and maintained network infrastructure (Mikrotik routers, HP switches)
+                        Set up and administered storage disk arrays and storage servers
+                        Administered Active Directory Domain Services (AD DS): file server shares, roaming profiles, Samba print servers
+                        Performed server maintenance, updates, virtualization, and configuration
+                        Provided technical support and troubleshooting for staff
+                    </div>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">IT Administrator</div>
+                            <div class="company">SIA "Valijas Nagļibeda ģimenes ārsta prakse"</div>
+                            <div class="location">Bauska</div>
+                        </div>
+                        <div class="duration">09/2018 - 01/2022</div>
+                    </div>
+                    <div class="job-description">
+                        Provided technical support for a general practitioner's office
+                        Ensured regular data backup and recovery procedures
+                        Performed ongoing system maintenance and updates
+                    </div>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Laboratory Assistant</div>
+                            <div class="company">Ventspils Augstskola</div>
+                            <div class="location">Ventspils</div>
+                        </div>
+                        <div class="duration">06/2019 - 08/2021</div>
+                    </div>
+                    <div class="job-description">
+                        Established a machine learning and computer vision laboratory
+                        Prepared technical specifications for procurement
+                        Installed and configured new equipment
+                        Managed classroom devices, servers, and network infrastructure
+                        Installed and maintained Windows and Linux systems
+                        Deployed and managed various software applications
+                    </div>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">QA Manual Tester</div>
+                            <div class="company">TestDevLab</div>
+                            <div class="location">Vetnspils</div>
+                        </div>
+                        <div class="duration">05/2018 - 08/2018</div>
+                    </div>
+                    <div class="job-description">
+                        Performed GET/POST API testing using cURL and Postman
+                        Conducted exploratory and smoke testing on Android and iOS applications
+                        Created and executed test cases, documented results, and reported bugs
+                        Utilized tools and technologies including Postman, cURL, ADB, GitHub, and Kanban boards for workflow management
+                    </div>
+                </div>
+            </div>
+            
+            <div class="education-section">
+                <h2 class="section-header">Education</h2>
+                <div class="education-item">
+                    <div class="degree">Masters degree in Computer Science</div>
+                    <div class="institution">Ventspils University of applied sciences</div>
+                    <div class="graduation">06/2022 • Ventspils</div>
+                    <div style="margin-top: 10px; color: #666;">Achieved Masters degree in Computer Science</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
